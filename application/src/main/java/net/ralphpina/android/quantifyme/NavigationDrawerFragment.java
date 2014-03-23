@@ -1,16 +1,16 @@
 package net.ralphpina.android.quantifyme;
 
 
-import android.app.Activity;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,9 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseUser;
+
+import java.util.ArrayList;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -97,16 +100,31 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+
+        ArrayList<String> titles = new ArrayList<String>();
+        titles.add(getString(R.string.profile));
+        titles.add(getString(R.string.home));
+        titles.add(getString(R.string.tutorial));
+        titles.add(getString(R.string.settings));
+
+        // if the user is signed, then show sign out, otherwise, signin
+        if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+            titles.add(getString(R.string.signin));
+        } else {
+            titles.add(getString(R.string.signout));
+        }
+
+        mDrawerListView.setAdapter(new NavDrawerAdapter(
                 getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                new String[]{
-                        getString(R.string.title_section1),
-                        getString(R.string.title_section2),
-                        getString(R.string.title_section3),
+                titles,
+                new Integer[]{
+                        R.drawable.ic_action_person,
+                        R.drawable.ic_action_view_as_grid,
+                        R.drawable.ic_action_help,
+                        R.drawable.ic_action_settings,
+                        R.drawable.ic_action_accounts,
                 }));
-        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+                mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
 
@@ -235,7 +253,6 @@ public class NavigationDrawerFragment extends Fragment {
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
         if (mDrawerLayout != null && isDrawerOpen()) {
-            inflater.inflate(R.menu.global, menu);
             showGlobalContextActionBar();
         }
         super.onCreateOptionsMenu(menu, inflater);
@@ -244,11 +261,6 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             return true;
         }
 

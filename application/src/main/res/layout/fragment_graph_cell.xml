@@ -1,13 +1,23 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context="net.ralphpina.android.quantifyme.GraphCellFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.echo.holographlibrary.LineGraph
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="100dp"
+        android:id="@+id/linegraph"/>
 
-</FrameLayout>
+    <com.echo.holographlibrary.BarGraph
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/bargraph"/>
+
+    <com.echo.holographlibrary.PieGraph
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/piegraph"/>
+
+</LinearLayout>

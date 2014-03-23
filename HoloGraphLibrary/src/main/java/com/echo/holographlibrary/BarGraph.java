@@ -23,10 +23,6 @@
 
 package com.echo.holographlibrary;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -42,6 +38,10 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BarGraph extends View {
 
@@ -97,7 +97,7 @@ public class BarGraph extends View {
             NinePatchDrawable popup = (NinePatchDrawable)this.getResources().getDrawable(R.drawable.popup_black);
             
             float maxValue = 0;
-            float padding = 7 * mContext.getResources().getDisplayMetrics().density;
+            float padding = 1 * mContext.getResources().getDisplayMetrics().density;
             int selectPadding = (int) (4 * mContext.getResources().getDisplayMetrics().density);
             float bottomPadding = 30 * mContext.getResources().getDisplayMetrics().density;
             

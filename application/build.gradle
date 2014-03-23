@@ -1,12 +1,5 @@
 apply plugin: 'android'
 
-repositories {
-    mavenCentral()
-    flatDir {
-        dirs 'libraries'
-    }
-}
-
 android {
     compileSdkVersion 19
     buildToolsVersion '19.0.1'
@@ -30,4 +23,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:4.0.30'
     compile 'com.android.support:appcompat-v7:+'
     compile project(':HoloGraphLibrary')
+    compile files('libs/Parse-1.4.1.jar')
 }
