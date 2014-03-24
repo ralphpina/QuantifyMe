@@ -16,5 +16,13 @@
     <!-- Action Bar Settings -->
     <string name="signin">Sign In</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loginHeader">Login to access all app features</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="validEmailErrorMessage">Enter a valid e-mail</string>
+    <string name="passwordErrorMessage">Enter a password</string>
+    <string name="noAccountErrorMessage">No account found.</string>
+    <string name="loginErrorDialogTitle">Login Error</string>
 
 </resources>

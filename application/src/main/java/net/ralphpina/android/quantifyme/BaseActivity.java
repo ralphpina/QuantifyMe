@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,7 +17,8 @@ import com.parse.ParseUser;
 ;
 
 public class BaseActivity extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, GraphCellFragment.OnFragmentInteractionListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks,
+        GraphCellFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -27,6 +29,7 @@ public class BaseActivity extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +78,6 @@ public class BaseActivity extends Activity
                         .replace(R.id.container, new MainFragment())
                         .commit();
                 break;
-            case 4:
-                mTitle = getString(R.string.signout);
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new MainFragment())
-                        .commit();
-                break;
         }
 
     }
@@ -99,9 +96,6 @@ public class BaseActivity extends Activity
             case 4:
                 mTitle = getString(R.string.settings);
                 break;
-            case 5:
-                mTitle = getString(R.string.signout);
-                break;
         }
     }
 
@@ -115,7 +109,9 @@ public class BaseActivity extends Activity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+        Log.e("BaseActivity", "++ onCreateOptionsMenu() ++");
+        if (!mNavigationDrawerFragment.isDrawerOpen() &&
+                mNavigationDrawerFragment.getDrawerToggle().isDrawerIndicatorEnabled()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
@@ -136,16 +132,39 @@ public class BaseActivity extends Activity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_sign_in) {
+        if (mNavigationDrawerFragment.getDrawerToggle().isDrawerIndicatorEnabled() &&
+                mNavigationDrawerFragment.getDrawerToggle().onOptionsItemSelected(item)) {
             return true;
         }
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //called when the up affordance/carat in actionbar is pressed
+                onBackPressed();
+                return true;
+
+            case R.id.action_sign_in:
+                mNavigationDrawerFragment.getDrawerToggle().setDrawerIndicatorEnabled(false);
+                mTitle = getString(R.string.login);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container, new LoginFragment())
+                        .addToBackStack(null)
+                        .commit();
+                invalidateOptionsMenu();
+                return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mNavigationDrawerFragment.getDrawerToggle().setDrawerIndicatorEnabled(true);
+        invalidateOptionsMenu();
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
-
 }

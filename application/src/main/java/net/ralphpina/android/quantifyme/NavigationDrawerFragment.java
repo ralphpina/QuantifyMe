@@ -107,23 +107,26 @@ public class NavigationDrawerFragment extends Fragment {
         titles.add(getString(R.string.tutorial));
         titles.add(getString(R.string.settings));
 
-        // if the user is signed, then show sign out, otherwise, signin
-        if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+        // if the user needs to sign in, show it in the navbar
+        if (!ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
             titles.add(getString(R.string.signin));
-        } else {
-            titles.add(getString(R.string.signout));
+        }
+
+        ArrayList<Integer> images = new ArrayList<Integer>();
+        images.add(R.drawable.ic_action_person);
+        images.add(R.drawable.ic_action_view_as_grid);
+        images.add(R.drawable.ic_action_help);
+        images.add(R.drawable.ic_action_settings);
+
+        // if the user needs to sign in, show it in the navbar
+        if (!ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+            images.add(R.drawable.ic_action_accounts);
         }
 
         mDrawerListView.setAdapter(new NavDrawerAdapter(
                 getActionBar().getThemedContext(),
                 titles,
-                new Integer[]{
-                        R.drawable.ic_action_person,
-                        R.drawable.ic_action_view_as_grid,
-                        R.drawable.ic_action_help,
-                        R.drawable.ic_action_settings,
-                        R.drawable.ic_action_accounts,
-                }));
+                images));
                 mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -276,6 +279,10 @@ public class NavigationDrawerFragment extends Fragment {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setTitle(R.string.app_name);
+    }
+
+    public ActionBarDrawerToggle getDrawerToggle() {
+        return mDrawerToggle;
     }
 
     private ActionBar getActionBar() {

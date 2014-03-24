@@ -17,9 +17,9 @@ public class NavDrawerAdapter extends ArrayAdapter<String> {
 
     private Context mContext;
     private ArrayList<String> mTitles;
-    private Integer[] mImages;
+    private ArrayList<Integer> mImages;
 
-    public NavDrawerAdapter(Context context, ArrayList<String> titles, Integer[] images) {
+    public NavDrawerAdapter(Context context, ArrayList<String> titles, ArrayList<Integer> images) {
         super(context, R.layout.nav_drawer_cell, R.id.navDrawerItemText, titles);
         this.mContext = context;
         this.mTitles = titles;
@@ -38,7 +38,7 @@ public class NavDrawerAdapter extends ArrayAdapter<String> {
         textView.setText(mTitles.get(position));
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.navDrawerItemImage);
-        imageView.setImageResource(mImages[position]);
+        imageView.setImageResource(mImages.get(position));
 
         return rowView;
 
