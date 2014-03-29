@@ -24,5 +24,8 @@
     <string name="passwordErrorMessage">Enter a password</string>
     <string name="noAccountErrorMessage">No account found.</string>
     <string name="loginErrorDialogTitle">Login Error</string>
+    <string name="createAccount">Create Account</string>
+    <string name="createAccountErrorDialogTitle">Create Account Error</string>
+    <string name="sleep">sleep</string>
 
 </resources>

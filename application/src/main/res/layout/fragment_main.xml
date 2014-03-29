@@ -9,6 +9,7 @@
     android:orientation="vertical"
     tools:context="net.ralphpina.android.quantifyme.BaseActivity$PlaceholderFragment">
 
+
    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -19,13 +20,36 @@
             android:layout_height="100dp"
             android:layout_below="@+id/titleSleep"/>
 
+
+
        <TextView
            android:id="@+id/titleSleep"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:paddingBottom="5dp"
            android:textSize="20sp"
-           android:text="SLEEP"/>
+           android:text="@string/sleep"
+           android:textAllCaps="true"/>
+
+       <RelativeLayout
+           android:id="@+id/sleepNoDataMain"
+           android:layout_width="match_parent"
+           android:layout_height="100dp"
+           android:layout_below="@+id/titleSleep"
+           android:background="#99000000"
+           android:visibility="gone"
+           android:clickable="true">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="You haven't entered any\n sleep data, click to start!"
+               android:textAppearance="?android:attr/textAppearanceLarge"
+               android:textColor="#AAFF0000"
+               android:layout_centerHorizontal="true"
+               android:layout_centerVertical="true"/>
+
+       </RelativeLayout>
 
     </RelativeLayout>
 

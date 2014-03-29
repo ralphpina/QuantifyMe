@@ -57,7 +57,7 @@ public class BaseActivity extends Activity
             case 0:
                 mTitle = getString(R.string.profile);
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new MainFragment())
+                        .replace(R.id.container, new ProfileFragment())
                         .commit();
                 break;
             case 1:
@@ -84,16 +84,16 @@ public class BaseActivity extends Activity
 
     public void onSectionAttached(int number) {
         switch (number) {
-            case 1:
+            case 0:
                 mTitle = getString(R.string.profile);
                 break;
-            case 2:
+            case 1:
                 mTitle = getString(R.string.home);
                 break;
-            case 3:
+            case 2:
                 mTitle = getString(R.string.tutorial);
                 break;
-            case 4:
+            case 3:
                 mTitle = getString(R.string.settings);
                 break;
         }

@@ -20,9 +20,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.parse.ParseAnonymousUtils;
-import com.parse.ParseUser;
-
 import java.util.ArrayList;
 
 /**
@@ -107,21 +104,11 @@ public class NavigationDrawerFragment extends Fragment {
         titles.add(getString(R.string.tutorial));
         titles.add(getString(R.string.settings));
 
-        // if the user needs to sign in, show it in the navbar
-        if (!ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
-            titles.add(getString(R.string.signin));
-        }
-
         ArrayList<Integer> images = new ArrayList<Integer>();
         images.add(R.drawable.ic_action_person);
         images.add(R.drawable.ic_action_view_as_grid);
         images.add(R.drawable.ic_action_help);
         images.add(R.drawable.ic_action_settings);
-
-        // if the user needs to sign in, show it in the navbar
-        if (!ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
-            images.add(R.drawable.ic_action_accounts);
-        }
 
         mDrawerListView.setAdapter(new NavDrawerAdapter(
                 getActionBar().getThemedContext(),

@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by ralphpina on 3/9/14.
  */
-@ParseClassName("User")
+@ParseClassName("_User")
 public class User extends ParseUser {
 
     public User() {

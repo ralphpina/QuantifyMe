@@ -1,13 +1,45 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.ralphpina.android.quantifyme.ProfileFragment">
+    tools:context="net.ralphpina.android.quantifyme.ProfileFragment"
+    android:orientation="vertical"
+    android:layout_margin="16dp" >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/loginToViewProfileTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="Login to create and view your profile."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:visibility="gone" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/profileNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Enter your name" />
+
+    <TextView
+        android:id="@+id/profileDOBTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Enter your birthday" />
+
+    <TextView
+        android:id="@+id/profileCityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Enter your city" />
+
+    <TextView
+        android:id="@+id/profileStateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Enter your state" />
+
+</LinearLayout>

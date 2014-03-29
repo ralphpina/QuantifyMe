@@ -18,6 +18,10 @@ public class Sleep extends ParseObject {
         put("sleepHours", hours);
     }
 
+    public void setUser() {
+        put("user", User.getCurrentUser());
+    }
+
     public int getHours() {
         return getInt("sleepHours");
     }
